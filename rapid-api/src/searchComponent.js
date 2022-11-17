@@ -1,4 +1,5 @@
 import React from 'react';
+import { Card } from "semantic-ui-react";
 
 class SearchComponent extends React.Component
 {
@@ -45,9 +46,34 @@ class SearchComponent extends React.Component
     render()
     {
         return (
+        // <div>
+        //     
+            
+        
+
+        // </div>
         <div>
             <input id="searchText" type="text" placeholder="Search here" onChange={this.getKeywordValue}></input>
             <button id="searchButton" onClick={this.searchHistoricalEvent}>Search</button>
+        {
+             this.state.historicEvents.length == 0 ? 
+               "this is empty"
+               :
+               this.state.historicEvents.map((row,i)=>{
+                
+                return <Card key={i}>
+                            <Card.Content header={"Date:" + row.month +'/' + row.day + '/' + row.year}/>
+                            <Card.Content>
+                                <Card.Description>
+                                    {row.event}
+                                </Card.Description>
+                            </Card.Content>
+                        </Card>
+
+               })
+                
+            
+        }
         </div>
         );
     }
